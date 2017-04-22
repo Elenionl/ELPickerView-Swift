@@ -11,9 +11,9 @@ ELPickerView: Easily Used Picker View build with Swift 3
 
 ## Screenshots
 Easily Used Picker View build with Swift 3
-[screenshots_1](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_1.png)
-[screenshots_2](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_2.png)
-[screenshots_3](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_3.gif)
+(https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_1.png)
+(https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_2.png)
+(https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_3.gif)
 
 ## How to Install
 
