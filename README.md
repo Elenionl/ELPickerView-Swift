@@ -218,6 +218,8 @@ public lazy var foregroundView: ELPickerForegroundView
 ## Author
 
 Hanping Xu ([Elenionl](https://github.com/Elenionl)), stellanxu@gmail.com
+
+
 --------------------------
 ## License
 
