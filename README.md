@@ -215,6 +215,10 @@ public lazy var foregroundView: ELPickerForegroundView
 * Swift 3.0
 * Using ARC
 --------------
+
+## TODO
+* [] Picker View with more than one component
+* [] Picker View of date and time
 ## Author
 
 Hanping Xu ([Elenionl](https://github.com/Elenionl)), stellanxu@gmail.com
