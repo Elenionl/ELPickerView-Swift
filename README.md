@@ -24,9 +24,7 @@ Easily Used Picker View build with Swift 3
 ### Using [CocoaPods](http://cocoapods.org)
 
 * Add this line to your ``podfile`` :
-```ruby
-pod 'RxSwift'
-```
+``pod 'RxSwift'``
 * Run `pod install` with Terminal
 * Then everything is done!
 -----------------------
