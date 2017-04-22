@@ -95,7 +95,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     public var willHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did hide
     public var didHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
-    lazy var tapBackground: UITapGestureRecognizer = {
+    public lazy var tapBackground: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapBackground(_:)))
         gesture.numberOfTapsRequired = 1
         return gesture
@@ -120,7 +120,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// - Parameters:
     ///   - pickerType: CustomPickerViewType
     ///   - items: items used as datasource of rows in Picker View
-    init(pickerType: ELCustomPickerViewType, items: [T]) {
+    public init(pickerType: ELCustomPickerViewType, items: [T]) {
         self.pickerType = pickerType
         self.items = items
         super.init(frame: .null)
@@ -133,14 +133,14 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     }
     
     /// Setup views
-    func setupViews() {
+    public func setupViews() {
         addSubview(foregroundView)
         addGestureRecognizer(tapBackground)
         clipsToBounds = true
     }
     
     /// Setup frame
-    func setupFrame() {
+    public func setupFrame() {
         foregroundView.frame = CGRect(x: 0, y: screenHeight * 1.5, width: screenWidth, height: 260)
     }
     
@@ -181,14 +181,14 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// Tap background action
     ///
     /// - Parameter sender: sender
-    func didTapBackground(_ sender: Any) {
+    public func didTapBackground(_ sender: Any) {
         hide(animated: true)
     }
     
     /// Tap left button action
     ///
     /// - Parameter button: button
-    func didTapLeftButton(_ button: UIButton) {
+    public func didTapLeftButton(_ button: UIButton) {
         weak var weakSelf = self
         var interact: (shouldHide: Bool, animated: Bool) = (true, true)
         if let handler = leftButtoTapHandler {
@@ -203,7 +203,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// Tap right button action
     ///
     /// - Parameter button: button
-    func didTapRightButton(_ button: UIButton) {
+    public func didTapRightButton(_ button: UIButton) {
         weak var weakSelf = self
         var interact: (shouldHide: Bool, animated: Bool) = (true, true)
         if let handler = rightButtoTapHandler {
@@ -271,8 +271,8 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
 /// - singleComponent: Picker View with only one component
 public enum ELCustomPickerViewType {
     case singleComponent
-//    case date
-//    case time
+    //    case date
+    //    case time
 }
 
 // MARK: - ELPickerForegroundView
@@ -316,31 +316,31 @@ open class ELPickerForegroundView: UIView {
         return label
     }()
     /// Title Bar
-    lazy var titleBar: UIView = {
+    public lazy var titleBar: UIView = {
         let view = UIView(frame: .null)
         view.backgroundColor = UIColor.white
         return view
     }()
     /// Top Divider of Title Bar
-    lazy var topDivider: UIView = {
+    public lazy var topDivider: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
         return view
     }()
     /// Bottom Divider of Title Bar
-    lazy var bottomDivider: UIView = {
+    public lazy var bottomDivider: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
         return view
     }()
     /// Picker
-    lazy var picker: UIPickerView = {
+    public lazy var picker: UIPickerView = {
         let picker = UIPickerView(frame: .null)
         return picker
     }()
     
     /// Setup Views
-    func setupViews() {
+    public func setupViews() {
         backgroundColor = UIColor.clear
         addSubview(titleBar)
         titleBar.clipsToBounds = false
@@ -353,7 +353,7 @@ open class ELPickerForegroundView: UIView {
     }
     
     /// Setup Frame
-    func setupFrame() {
+    public func setupFrame() {
         titleBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 44)
         topDivider.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 0.5)
         bottomDivider.frame = CGRect(x: 0, y: titleBar.frame.height - 0.5, width: screenWidth, height: 0.5)
@@ -366,7 +366,7 @@ open class ELPickerForegroundView: UIView {
     /// Init
     ///
     /// - Parameter pickerType: CustomPickerViewType
-    init(pickerType: ELCustomPickerViewType) {
+    public init(pickerType: ELCustomPickerViewType) {
         self.pickerType = pickerType
         super.init(frame: .null)
         setupViews()

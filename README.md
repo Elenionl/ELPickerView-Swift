@@ -11,15 +11,11 @@ ELPickerView: Easily Used Picker View build with Swift 3
 
 ## Screenshots
 Easily Used Picker View build with Swift 3
-<<<<<<< HEAD
+
 ![screenshots_1](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_1.png)
 ![screenshots_2](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_2.png)
 ![screenshots_3](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_3.gif)
-=======
-(https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_1.png)
-(https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_2.png)
-(https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_3.gif)
->>>>>>> origin/master
+
 
 ## How to Install
 
@@ -53,7 +49,7 @@ lazy var customPickerView: ELCustomPickerView<String> = {
         ])
 }
 ```
-1. show
+2. show
 ```Swift
 override func viewDidLoad() {
         super.viewDidLoad()

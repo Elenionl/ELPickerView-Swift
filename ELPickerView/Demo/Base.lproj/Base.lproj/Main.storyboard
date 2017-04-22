@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2Ge-QW-EXk">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,58 +18,67 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aT-bk-lch">
-                                <rect key="frame" x="128" y="218" width="118" height="30"/>
+                                <rect key="frame" x="101" y="234" width="118" height="30"/>
                                 <state key="normal" title="Show by Window"/>
                                 <connections>
                                     <action selector="showByWindow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rpX-Ww-6l3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGc-1L-ym5">
-                                <rect key="frame" x="105" y="269" width="164" height="30"/>
+                                <rect key="frame" x="78" y="285" width="164" height="30"/>
                                 <state key="normal" title="Show by ViewController"/>
                                 <connections>
                                     <action selector="showByViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DnF-br-6AH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9N-ou-VBQ">
-                                <rect key="frame" x="124" y="318" width="127" height="30"/>
+                                <rect key="frame" x="97" y="334" width="127" height="30"/>
                                 <state key="normal" title="White Background"/>
                                 <connections>
                                     <action selector="showWithWhiteBackground:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zuF-VP-PoS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-DA-bKo">
-                                <rect key="frame" x="130" y="367" width="115" height="30"/>
+                                <rect key="frame" x="103" y="383" width="115" height="30"/>
                                 <state key="normal" title="Without Title Bar"/>
                                 <connections>
                                     <action selector="showWithoutTitleBar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dT6-oS-RKm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiG-ZC-OTL">
-                                <rect key="frame" x="147" y="422" width="80" height="30"/>
+                                <rect key="frame" x="120" y="438" width="80" height="30"/>
                                 <state key="normal" title="No Dividers"/>
                                 <connections>
                                     <action selector="showWithNoDivider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3OF-FM-7yr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-FI-2gq">
-                                <rect key="frame" x="87" y="112" width="200" height="21"/>
+                                <rect key="frame" x="10" y="116.5" width="300" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="12p-Rj-WBB"/>
+                                    <constraint firstAttribute="width" constant="300" id="JMS-VJ-U8Z"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zH-tVb">
+                                <rect key="frame" x="105.5" y="87" width="109" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="bsc-FI-2gq" firstAttribute="top" secondItem="dx8-zH-tVb" secondAttribute="bottom" constant="8" id="1Gz-MB-vg4"/>
+                            <constraint firstItem="dx8-zH-tVb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="INs-RH-sh8"/>
                             <constraint firstItem="VGc-1L-ym5" firstAttribute="centerX" secondItem="7aT-bk-lch" secondAttribute="centerX" id="Sth-ai-qhe"/>
                             <constraint firstItem="dSt-DA-bKo" firstAttribute="top" secondItem="f9N-ou-VBQ" secondAttribute="bottom" constant="19" id="U4d-jx-STB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XiG-ZC-OTL" secondAttribute="bottom" constant="100" id="V0r-pg-wua"/>
                             <constraint firstItem="XiG-ZC-OTL" firstAttribute="top" secondItem="dSt-DA-bKo" secondAttribute="bottom" constant="25" id="V3H-W1-pB5"/>
                             <constraint firstItem="bsc-FI-2gq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VyX-dh-uds"/>
                             <constraint firstItem="f9N-ou-VBQ" firstAttribute="centerX" secondItem="dSt-DA-bKo" secondAttribute="centerX" id="cws-hy-Pft"/>
@@ -77,14 +86,14 @@
                             <constraint firstItem="f9N-ou-VBQ" firstAttribute="top" secondItem="VGc-1L-ym5" secondAttribute="bottom" constant="19" id="fwN-ph-C56"/>
                             <constraint firstItem="VGc-1L-ym5" firstAttribute="top" secondItem="7aT-bk-lch" secondAttribute="bottom" constant="21" id="nYL-GR-otJ"/>
                             <constraint firstItem="dSt-DA-bKo" firstAttribute="centerX" secondItem="XiG-ZC-OTL" secondAttribute="centerX" id="qZP-OC-CQx"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XiG-ZC-OTL" secondAttribute="bottom" constant="215" id="qs5-Cy-tg2"/>
+                            <constraint firstItem="dx8-zH-tVb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="23" id="qsi-y0-dFb"/>
                             <constraint firstItem="VGc-1L-ym5" firstAttribute="centerX" secondItem="f9N-ou-VBQ" secondAttribute="centerX" id="ubA-Uu-6ke"/>
-                            <constraint firstItem="bsc-FI-2gq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="48" id="ynC-Ak-d66"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rkJ-Ow-7M7"/>
                     <connections>
                         <outlet property="logLabel" destination="bsc-FI-2gq" id="oGG-OS-UYF"/>
+                        <outlet property="showStatus" destination="dx8-zH-tVb" id="LS6-u4-IBr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
