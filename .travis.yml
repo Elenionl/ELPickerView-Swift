@@ -1,0 +1,12 @@
+language: objective-c
+
+os:
+    - osx
+language: generic
+sudo: required
+dist: trusty
+osx_image: xcode8.3
+env:
+  - TEST=iOS
+after_success:
+  - sleep 5 # workaround https://github.com/travis-ci/travis-ci/issues/4725
