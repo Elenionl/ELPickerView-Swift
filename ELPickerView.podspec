@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   ELPickerView is flexable too, there are rich document and annotation for ELPickerView.
                    DESC
   s.homepage     = "https://github.com/Elenionl/ELPickerView-Swift"
-  s.screenshots  = "https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_2.png", "https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_1.png"
+  s.screenshots  = "https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_4.gif"
   s.license      = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author             = { "Hanping Xu" => "stellanxu@gmail.com" }
   s.social_media_url   = "https://github.com/Elenionl"
