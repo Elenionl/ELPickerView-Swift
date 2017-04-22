@@ -43,7 +43,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
             foregroundView.titleBar.isHidden = isTitleBarHidden
         }
     }
-    /// Set Taping Background to hide Picker View enabled or not  Defualt value is true
+    /// Set Taping Background to hide Picker View enabled or not  Default value is true
     public var isTapBackgroundEnabled = true {
         didSet {
             tapBackground.isEnabled = isTapBackgroundEnabled
