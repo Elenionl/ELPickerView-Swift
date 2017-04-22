@@ -8,35 +8,36 @@ ELPickerView: 简单易用的 Picker View, 使用 Swift 3 开发
 [![Platform](https://img.shields.io/cocoapods/p/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
 
 **:warning: ELPickerView 适用于 Swift 3.**
-
+--------------
 ## Screenshots
  简单易用的 Picker View, 使用 Swift 3 开发
 
 
 ![screenshots_4](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_4.gif)
-
+-----------
 
 ## 安装方法
-
+---------------
 ### 使用 [CocoaPods](http://cocoapods.org)
-
+-----------
 * 在 ``podfile`` 中添加下面一行代码 :
 ```ruby
 pod 'RxSwift'
 ```
 * 使用 Terminal 运行 `pod install`
 * 完成!
-
+-----------
 ### 直接添加
 * 用浏览器打开 [Elenionl/ELPickerView-Swift](https://github.com/Elenionl/ELPickerView-Swift)
 * 下载或克隆项目: ``https://github.com/Elenionl/ELPickerView-Swift.git``
 * 复制项目中的 ``ELCustomPickerView.swift`` 文件到您的项目中
 * 完成!
 
-
+------------
 ## 如何使用
+------------
 ### ELPickerView 十分简便,使用仅需要两步:
-1. 构造
+* 构造
 ```Swift
 lazy var customPickerView: ELCustomPickerView<String> = {
     return ELCustomPickerView<String>(pickerType: .singleComponent, items: [
@@ -49,16 +50,17 @@ lazy var customPickerView: ELCustomPickerView<String> = {
         ])
 }
 ```
-2. 展示
+* 展示
 ```Swift
 override func viewDidLoad() {
         super.viewDidLoad()
         customPickerView.show(viewController: self, animated: true)
 }
 ```
+------------
 ### 如果想让 Picker View 的北京覆盖导航栏和工具栏
 
-只需要让 window 来展示 Picker View 代码如下:
+* 只需要让 window 来展示 Picker View 代码如下:
 
 ```Swift
     override func viewDidLoad() {
@@ -66,10 +68,10 @@ override func viewDidLoad() {
         customPickerView.show(viewController: nil, animated: true)
     }
 ```
-
+-------------
 ### ELPickerView 中没有代理, 使用闭包来处理回调, 代码聚合性更好
 
-针对各种事件都有回调
+* 针对各种事件都有回调
 ```Swift
         customPickerView.leftButtoTapHandler = { [weak self] (view: ELCustomPickerView<String>?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
             let hide = true
@@ -79,7 +81,7 @@ override func viewDidLoad() {
             return (hide, animated)
         }
 ```
-这个闭包是这样定义的
+* 这个闭包是这样定义的
 ```Swift
     /// 当点击左侧按钮的时候出发
     //  view: 触发时间的 Picker View
@@ -89,10 +91,10 @@ override func viewDidLoad() {
     //  animated: 通知 Picker View 隐藏时是否有动画, 默认是 true
     public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
 ```
-
+-------------------------
 ### Picker View 中的栏目对用的不仅仅是 String, 也可是 **对象** **结构体** **枚举** 以及 **元组**
 
-使用方法: 构造时通过泛型指定 item 的类型, 并将带有 item 的数组作为参数传入构造函数
+* 使用方法: 构造时通过泛型指定 item 的类型, 并将带有 item 的数组作为参数传入构造函数
 ```Swift
 typealias CustomView = ELCustomPickerView<(key: String, content: String)>
 ...
@@ -106,15 +108,15 @@ let view = CustomView(pickerType: .singleComponent, items: [
           ])
 ```
 
-给 itemConfigHandler 属性赋值, 该属性是一个将 item 转化成 String 类型对象的闭包, 当为Picker View 提供数据的时候, ELPickerView 将会调用该闭包将 item 转化成要展现的条目
+* 给 itemConfigHandler 属性赋值, 该属性是一个将 item 转化成 String 类型对象的闭包, 当为Picker View 提供数据的时候, ELPickerView 将会调用该闭包将 item 转化成要展现的条目
 ```Swift
 view.itemConfigHandler = { (key: String, content: String) in
     return content
 }
 ```
 
-完成!
-
+* 完成!
+-------------------------
 ### Picker View 的配置也十分简单
 
 ```Swift
@@ -127,7 +129,7 @@ view.itemConfigHandler = { (key: String, content: String) in
         view.foregroundView.picker.backgroundColor = UIColor.white
         view.foregroundView.bottomDivider.isHidden = true
 ```
-
+----------------
 ## 下面是可进行配置的相关属性
 
 ```Swift
@@ -202,17 +204,17 @@ lazy var tapBackground: UITapGestureRecognizer = {
 /// The bottom view containing Title Bar and Picker
 public lazy var foregroundView: ELPickerForegroundView
 ```
-
+----------------
 ## 需求
 
 * Xcode 8.0
 * Swift 3.0
 * 使用 ARC
-
+-------------------
 ## 作者
 
 Hanping Xu ([Elenionl](https://github.com/Elenionl)), stellanxu@gmail.com
-
+-------------------
 ## 协议
 
 ELPickerView is available under the MIT license, see the LICENSE file for more information.   

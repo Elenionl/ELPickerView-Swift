@@ -8,16 +8,19 @@ ELPickerView: Easily Used Picker View build with Swift 3
 [![Platform](https://img.shields.io/cocoapods/p/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
 
 **:Warning: ELPickerView requires Swift Version higher than 3.0.**
+----------
+##请点击[中文说明](https://github.com/Elenionl/ELPickerView-Swift/blob/master/README%20IN%20CHINESE.md)
+--------------------
 
 ## Screenshots
 Easily Used Picker View build with Swift 3
 
 
 ![screenshots_4](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_4.gif)
-
+----------------------
 
 ## How to Install
-
+---------------------------
 ### Using [CocoaPods](http://cocoapods.org)
 
 * Add this line to your ``podfile`` :
@@ -26,17 +29,19 @@ pod 'RxSwift'
 ```
 * Run `pod install` with Terminal
 * Then everything is done!
+-----------------------
 ### Simply add
 
 * Open [Elenionl/ELPickerView-Swift](https://github.com/Elenionl/ELPickerView-Swift) with browser
 * Download or Clone Project: ``https://github.com/Elenionl/ELPickerView-Swift.git``
 * Copy ``ELCustomPickerView.swift`` file to your project
 * Enjoy
-
+-------------
 
 ## How to Use
+---------------
 ### If you want to show a Picker View in your application. Simply do these two steps:
-1. init
+* init
 ```Swift
 lazy var customPickerView: ELCustomPickerView<String> = {
     return ELCustomPickerView<String>(pickerType: .singleComponent, items: [
@@ -49,16 +54,17 @@ lazy var customPickerView: ELCustomPickerView<String> = {
         ])
 }
 ```
-2. show
+* show
 ```Swift
 override func viewDidLoad() {
         super.viewDidLoad()
         customPickerView.show(viewController: self, animated: true)
 }
 ```
+----------------------
 ### If You Want the Translucent Background to Cover the Navigation Bar and the Tab Background
 
-Just let the window show Picker View like this:
+* Just let the window show Picker View like this:
 
 ```Swift
     override func viewDidLoad() {
@@ -69,7 +75,7 @@ Just let the window show Picker View like this:
 
 ### Instead of Delegate, ELPickerView Use Closure to Handle Callback
 
-There are rich callbacks as follow:
+* There are rich callbacks as follow:
 ```Swift
         customPickerView.leftButtoTapHandler = { [weak self] (view: ELCustomPickerView<String>?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
             let hide = true
@@ -79,7 +85,9 @@ There are rich callbacks as follow:
             return (hide, animated)
         }
 ```
-And here is the define and meaning of the handler:
+
+* And here is the define and meaning of the handler:
+
 ```Swift
     /// Triggered when Left Button is tapped.
     //  view: the CustomPickerView
@@ -89,10 +97,10 @@ And here is the define and meaning of the handler:
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
     public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
 ```
-
+--------------------------
 ### You Can Let Users Pick Between Instance, Struct, Enum, Tuple
 
-Add whatever kind of items when init:
+* Add whatever kind of items when init:
 ```Swift
 typealias CustomView = ELCustomPickerView<(key: String, content: String)>
 ...
@@ -106,15 +114,15 @@ let view = CustomView(pickerType: .singleComponent, items: [
           ])
 ```
 
-Give a handler to transform item into a String kind var
+* Give a handler to transform item into a String kind var
 ```Swift
 view.itemConfigHandler = { (key: String, content: String) in
     return content
 }
 ```
 
-Then Done
-
+* Then Done
+--------------------
 ### View is Easily Customizable
 
 ```Swift
@@ -127,7 +135,7 @@ Then Done
         view.foregroundView.picker.backgroundColor = UIColor.white
         view.foregroundView.bottomDivider.isHidden = true
 ```
-
+-----------------
 ## Settings and Handlers Available
 
 ```Swift
@@ -202,17 +210,17 @@ lazy var tapBackground: UITapGestureRecognizer = {
 /// The bottom view containing Title Bar and Picker
 public lazy var foregroundView: ELPickerForegroundView
 ```
-
+------------
 ## Requirements
 
 * Xcode 8.0
 * Swift 3.0
 * Using ARC
-
+--------------
 ## Author
 
 Hanping Xu ([Elenionl](https://github.com/Elenionl)), stellanxu@gmail.com
-
+--------------------------
 ## License
 
 ELPickerView is available under the MIT license, see the LICENSE file for more information.   
