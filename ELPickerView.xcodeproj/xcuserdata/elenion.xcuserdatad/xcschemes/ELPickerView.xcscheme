@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CB1BB4A1EAAFCD7007B99DD"
+               BlueprintIdentifier = "2C2398571EAB302D004F4D83"
                BuildableName = "ELPickerView.app"
                BlueprintName = "ELPickerView"
                ReferencedContainer = "container:ELPickerView.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CB1BB4A1EAAFCD7007B99DD"
+            BlueprintIdentifier = "2C2398571EAB302D004F4D83"
             BuildableName = "ELPickerView.app"
             BlueprintName = "ELPickerView"
             ReferencedContainer = "container:ELPickerView.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CB1BB4A1EAAFCD7007B99DD"
+            BlueprintIdentifier = "2C2398571EAB302D004F4D83"
             BuildableName = "ELPickerView.app"
             BlueprintName = "ELPickerView"
             ReferencedContainer = "container:ELPickerView.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CB1BB4A1EAAFCD7007B99DD"
+            BlueprintIdentifier = "2C2398571EAB302D004F4D83"
             BuildableName = "ELPickerView.app"
             BlueprintName = "ELPickerView"
             ReferencedContainer = "container:ELPickerView.xcodeproj">
