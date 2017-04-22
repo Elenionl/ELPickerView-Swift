@@ -7,9 +7,9 @@ ELPickerView: Easily Used Picker View build with Swift 3
 [![Platform](https://img.shields.io/cocoapods/p/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
 
 
-**:Warning: ELPickerView requires Swift Version higher than 3.0.**
+**:warning: ELPickerView requires Swift Version higher than 3.0.**
 ----------
-##请点击[中文说明](https://github.com/Elenionl/ELPickerView-Swift/blob/master/README%20IN%20CHINESE.md)
+## 请点击[中文说明](https://github.com/Elenionl/ELPickerView-Swift/blob/master/README%20IN%20CHINESE.md)
 --------------------
 
 ## Screenshots
