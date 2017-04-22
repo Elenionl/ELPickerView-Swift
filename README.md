@@ -217,8 +217,8 @@ public lazy var foregroundView: ELPickerForegroundView
 --------------
 
 ## TODO
-* [] Picker View with more than one component
-* [] Picker View of date and time
+* ❌ Picker View with more than one component
+* ❌ Picker View of date and time
 ## Author
 
 Hanping Xu ([Elenionl](https://github.com/Elenionl)), stellanxu@gmail.com
