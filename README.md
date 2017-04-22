@@ -132,42 +132,28 @@ Then Done
 
 /// Type of Picker View
 public let pickerType: ELCustomPickerViewType
+
 /// Items used to config Picker View rows  Default value is []
-public var items: [T] {
-    didSet {
-        foregroundView.picker.reloadAllComponents()
-    }
-}
+public var items: [T]
+
 /// Background of the screen  Default value is true
-public var blackBackground: Bool = true {
-    didSet {
-        backgroundColor = blackBackground ? UIColor.init(white: 0/255, alpha: 0.4) : UIColor.clear
-    }
-}
+public var blackBackground: Bool
+
 /// Set Title Bar hidden or not  Default value is false
-public var isTitleBarHidden = false {
-    didSet {
-        foregroundView.titleBar.isHidden = isTitleBarHidden
-    }
-}
-/// Set Taping Background to hide Picker View enabled or not  Defualt value is true
-public var isTapBackgroundEnabled = true {
-    didSet {
-        tapBackground.isEnabled = isTapBackgroundEnabled
-    }
-}
+public var isTitleBarHidden = false
+
+/// Set Taping Background to hide Picker View enabled or not  Default value is true
+public var isTapBackgroundEnabled = true
+
 /// Left Button of the Title Bar, shortcut to foregroundView.leftButton
-public lazy var leftButton: UIButton = {
-    return self.foregroundView.leftButton
-}()
+public lazy var leftButton: UIButton
+
 /// Right Button of the Title Bar, shortcut to foregroundView.rightButton
-public lazy var rightButton: UIButton = {
-    return self.foregroundView.rightButton
-}()
+public lazy var rightButton: UIButton
+
 /// Title of the Title Bar, shortcut to foregroundView.title
-public lazy var title: UILabel = {
-    return self.foregroundView.title
-}()
+public lazy var title: UILabel
+
 
 // MARK: - Handler
 
@@ -221,72 +207,11 @@ public lazy var foregroundView: ELPickerForegroundView = {
 }()
 ```
 
-* All of this is great, but it would be nice to talk with other people using RxSwift and exchange experiences. <br />[![Slack channel](http://rxswift-slack.herokuapp.com/badge.svg)](http://rxswift-slack.herokuapp.com/) [Join Slack Channel](http://rxswift-slack.herokuapp.com)
-* Report a problem using the library. [Open an Issue With Bug Template](.github/ISSUE_TEMPLATE.md)
-* Request a new feature. [Open an Issue With Feature Request Template](Documentation/NewFeatureRequestTemplate.md)
-
-
-###### ... compare
-
-* [with other libraries](Documentation/ComparisonWithOtherLibraries.md).
-
-
-###### ... find compatible
-
-* libraries from [RxSwiftCommunity](https://github.com/RxSwiftCommunity).
-* [Pods using RxSwift](https://cocoapods.org/?q=uses%3Arxswift).
-
-###### ... see the broader vision
-
-* Does this exist for Android? [RxJava](https://github.com/ReactiveX/RxJava)
-* Where is all of this going, what is the future, what about reactive architectures, how do you design entire apps this way? [Cycle.js](https://github.com/cyclejs/cycle-core) - this is javascript, but [RxJS](https://github.com/Reactive-Extensions/RxJS) is javascript version of Rx.
-
-## Usage
-
-<table>
-  <tr>
-    <th width="30%">Here's an example</th>
-    <th width="30%">In Action</th>
-  </tr>
-  <tr>
-    <td>Define search for GitHub repositories ...</td>
-    <th rowspan="9"><img src="https://raw.githubusercontent.com/kzaher/rxswiftcontent/master/GithubSearch.gif"></th>
-  </tr>
-  <tr>
-    <td><div class="highlight highlight-source-swift"><pre>
-let searchResults = searchBar.rx.text.orEmpty
-    .throttle(0.3, scheduler: MainScheduler.instance)
-    .distinctUntilChanged()
-    .flatMapLatest { query -> Observable&lt;[Repository]&gt; in
-        if query.isEmpty {
-            return .just([])
-        }
-        return searchGitHub(query)
-            .catchErrorJustReturn([])
-    }
-    .observeOn(MainScheduler.instance)</pre></div></td>
-  </tr>
-  <tr>
-    <td>... then bind the results to your tableview</td>
-  </tr>
-  <tr>
-    <td width="30%"><div class="highlight highlight-source-swift"><pre>
-searchResults
-    .bind(to: tableView.rx.items(cellIdentifier: "Cell")) {
-        (index, repository: Repository, cell) in
-        cell.textLabel?.text = repository.name
-        cell.detailTextLabel?.text = repository.url
-    }
-    .disposed(by: disposeBag)</pre></div></td>
-  </tr>
-</table>
-
-
 ## Requirements
 
 * Xcode 8.0
 * Swift 3.0
-* using ARC
+* Using ARC
 
 ## Author
 
