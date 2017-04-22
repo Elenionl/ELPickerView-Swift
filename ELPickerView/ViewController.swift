@@ -1,14 +1,7 @@
-//
-//  ViewController.swift
-//  ELPickerView
-//
-//  Created by Elenion on 2017/4/22.
-//  Copyright © 2017年 Elenion. All rights reserved.
-//
 
 import UIKit
 
-typealias CustomView = CustomPickerView<(key: String, content: String)>
+typealias CustomView = ELCustomPickerView<(key: String, content: String)>
 
 class ViewController: UIViewController {
     @IBOutlet weak var logLabel: UILabel!
@@ -39,7 +32,7 @@ class ViewController: UIViewController {
         view.rightButton.setTitle("RIGHT", for: .normal)
         view.title.text = "TITLE"
         view.foregroundView.picker.backgroundColor = UIColor.white
-        view.foregroundView.topDivider.isHidden = true
+        view.foregroundView.bottomDivider.isHidden = true
         // MARK: - Handler
         view.itemConfigHandler = { (key: String, content: String) in
             return content
