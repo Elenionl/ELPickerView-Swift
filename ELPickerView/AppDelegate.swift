@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  ELPickerView
-//
-//  Created by Elenion on 2017/4/22.
-//  Copyright © 2017年 Elenion. All rights reserved.
-//
 
 import UIKit
 

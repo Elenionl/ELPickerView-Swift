@@ -6,14 +6,14 @@ private let screenWidth = UIScreen.main.bounds.size.width
 /// Height of Screen
 private let screenHeight = UIScreen.main.bounds.size.height
 
-// MARK: - CustomPickerView
+// MARK: - ELCustomPickerView
 /// The Custom Picker View With Animation
-class CustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
+class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Settings
     
     /// Type of Picker View
-    let pickerType: CustomPickerViewType
+    let pickerType: ELCustomPickerViewType
     /// Items used to config Picker View rows  Default value is []
     var items: [T] {
         didSet {
@@ -61,29 +61,29 @@ class CustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSo
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
-    var leftButtoTapHandler: ((_ view: CustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+    var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
     /// Triggered when Right Button is tapped.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
-    var rightButtoTapHandler: ((_ view: CustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+    var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
     /// Triggered when user picked one row in Picker View.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is false
     //  animated: tell the Picker View whether the hide action should have animation   Default value is false
-    var didScrollHandler: ((_ view: CustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+    var didScrollHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
     /// Triggered when Picker View will show
-    var willShowHandler: ((_ view: CustomPickerView?) -> Void)?
+    var willShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did show
-    var didShowHandler: ((_ view: CustomPickerView?) -> Void)?
+    var didShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View will hide
-    var willHideHandler: ((_ view: CustomPickerView?) -> Void)?
+    var willHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did hide
-    var didHideHandler: ((_ view: CustomPickerView?) -> Void)?
+    var didHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
     lazy var tapBackground: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapBackground(_:)))
         gesture.numberOfTapsRequired = 1
@@ -93,8 +93,8 @@ class CustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSo
     // MARK: - Views
     
     /// The bottom view containing Title Bar and Picker
-    lazy var foregroundView: CustomPicker = {
-        let picker = CustomPicker(pickerType: self.pickerType)
+    lazy var foregroundView: ELPickerForegroundView = {
+        let picker = ELPickerForegroundView(pickerType: self.pickerType)
         picker.leftButton.addTarget(self, action: #selector(didTapLeftButton(_:)), for: .touchUpInside)
         picker.rightButton.addTarget(self, action: #selector(didTapRightButton(_:)), for: .touchUpInside)
         picker.picker.delegate = self
@@ -109,7 +109,7 @@ class CustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSo
     /// - Parameters:
     ///   - pickerType: CustomPickerViewType
     ///   - items: items used as datasource of rows in Picker View
-    init(pickerType: CustomPickerViewType, items: [T]) {
+    init(pickerType: ELCustomPickerViewType, items: [T]) {
         self.pickerType = pickerType
         self.items = items
         super.init(frame: .null)
@@ -253,24 +253,24 @@ class CustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSo
     }
 }
 
-// MARK: - CustomPickerViewType
+// MARK: - ELCustomPickerViewType
 
-/// CustomPickerViewType. The Picker View can only have one component by now, will add more pickerType in future.
+/// ELCustomPickerViewType. The Picker View can only have one component by now, will add more pickerType in future.
 ///
 /// - singleComponent: Picker View with only one component
-enum CustomPickerViewType {
+enum ELCustomPickerViewType {
     case singleComponent
 //    case date
 //    case time
 }
 
-// MARK: - CustomPicker
+// MARK: - ELPickerForegroundView
 
 /// The view holding TitleBar and Picker
-class CustomPicker: UIView {
+class ELPickerForegroundView: UIView {
     
     /// CustomPickerViewType
-    let pickerType: CustomPickerViewType
+    let pickerType: ELCustomPickerViewType
     
     /// Left Button of Title Bar
     lazy var leftButton: UIButton = {
@@ -355,7 +355,7 @@ class CustomPicker: UIView {
     /// Init
     ///
     /// - Parameter pickerType: CustomPickerViewType
-    init(pickerType: CustomPickerViewType) {
+    init(pickerType: ELCustomPickerViewType) {
         self.pickerType = pickerType
         super.init(frame: .null)
         setupViews()
