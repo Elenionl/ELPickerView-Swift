@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author             = { "Hanping Xu" => "stellanxu@gmail.com" }
   s.social_media_url   = "https://github.com/Elenionl"
-  s.platform     = :iOS, '8.0'
+  s.platform     = :ios, '8.0'
   s.source       = { :git => "https://github.com/Elenionl/ELPickerView-Swift.git", :tag => "#{s.version}" }
   s.source_files  = "ELPickerView/ELPickerView/*.swift"
   s.requires_arc = true
