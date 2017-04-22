@@ -28,7 +28,7 @@ pod 'RxSwift'
 #### Simply add
 * Open [Elenionl/ELPickerView-Swift](https://github.com/Elenionl/ELPickerView-Swift)
 * Download or Clone Project: ``https://github.com/Elenionl/ELPickerView-Swift.git``
-* Copy 'ELCustomPickerView.swift' file to your project
+* Copy ``ELCustomPickerView.swift`` file to your project
 * Enjoy
 
 
@@ -198,14 +198,7 @@ lazy var tapBackground: UITapGestureRecognizer = {
 // MARK: - Views
 
 /// The bottom view containing Title Bar and Picker
-public lazy var foregroundView: ELPickerForegroundView = {
-    let picker = ELPickerForegroundView(pickerType: self.pickerType)
-    picker.leftButton.addTarget(self, action: #selector(didTapLeftButton(_:)), for: .touchUpInside)
-    picker.rightButton.addTarget(self, action: #selector(didTapRightButton(_:)), for: .touchUpInside)
-    picker.picker.delegate = self
-    picker.picker.dataSource = self
-    return picker
-}()
+public lazy var foregroundView: ELPickerForegroundView
 ```
 
 ## Requirements
