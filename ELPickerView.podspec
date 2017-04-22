@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/Elenionl/ELPickerView-Swift"
   s.screenshots  = "https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_2.png", "https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_1.png"
   s.license      = "MIT"
-  s.author             = { "Elenionl" => "stellanxu@gmail.com" }
+  s.author             = { "Hanping Xu" => "stellanxu@gmail.com" }
   s.social_media_url   = "https://github.com/Elenionl"
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/Elenionl/ELPickerView-Swift.git", :tag => "#{s.version}" }
