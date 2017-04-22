@@ -168,6 +168,7 @@ public lazy var title: UILabel
 
 /// Function used to transform Item into String. If the Item is String kind, itemConfigHandler is not necessory to be set.
 public var itemConfigHandler: ((T) -> String)?
+
 /// Triggered when Left Button is tapped.
 //  view: the CustomPickerView
 //  chosenIndex: the current chosen index of row in Picker View
@@ -175,6 +176,7 @@ public var itemConfigHandler: ((T) -> String)?
 //  shouldHide: tell the Picker View whether it should be hide  Default value is true
 //  animated: tell the Picker View whether the hide action should have animation  Default value is true
 public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+
 /// Triggered when Right Button is tapped.
 //  view: the CustomPickerView
 //  chosenIndex: the current chosen index of row in Picker View
@@ -182,6 +184,7 @@ public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: In
 //  shouldHide: tell the Picker View whether it should be hide  Default value is true
 //  animated: tell the Picker View whether the hide action should have animation  Default value is true
 public var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+
 /// Triggered when user picked one row in Picker View.
 //  view: the CustomPickerView
 //  chosenIndex: the current chosen index of row in Picker View
@@ -189,19 +192,18 @@ public var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: I
 //  shouldHide: tell the Picker View whether it should be hide  Default value is false
 //  animated: tell the Picker View whether the hide action should have animation   Default value is false
 public var didScrollHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+
 /// Triggered when Picker View will show
 public var willShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
+
 /// Triggered when Picker View did show
 public var didShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
+
 /// Triggered when Picker View will hide
 public var willHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
+
 /// Triggered when Picker View did hide
 public var didHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
-lazy var tapBackground: UITapGestureRecognizer = {
-    let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapBackground(_:)))
-    gesture.numberOfTapsRequired = 1
-    return gesture
-}()
 
 // MARK: - Views
 
@@ -214,6 +216,7 @@ public lazy var foregroundView: ELPickerForegroundView
 * Xcode 8.0
 * Swift 3.0
 * Using ARC
+* iOS 8.0
 --------------
 
 ## TODO
