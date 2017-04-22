@@ -19,3 +19,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.frameworks = 'UIKit'
 end
+# pod spec lint ELPickerView.podspec
+# pod trunk push ELPickerView.podspec
