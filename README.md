@@ -8,9 +8,9 @@ ELPickerView: Easily Used Picker View build with Swift 3
 
 
 **:warning: ELPickerView requires Swift Version higher than 3.0.**
-----------
+
 ## 请点击[中文说明](https://github.com/Elenionl/ELPickerView-Swift/blob/master/README%20IN%20CHINESE.md)
---------------------
+
 
 ## Screenshots
 Easily Used Picker View build with Swift 3
@@ -20,7 +20,7 @@ Easily Used Picker View build with Swift 3
 ----------------------
 
 ## How to Install
----------------------------
+
 ### Using [CocoaPods](http://cocoapods.org)
 
 * Add this line to your ``podfile`` :
@@ -37,7 +37,7 @@ Easily Used Picker View build with Swift 3
 -------------
 
 ## How to Use
----------------
+
 ### If you want to show a Picker View in your application. Simply do these two steps:
 * init
 ```Swift
@@ -70,7 +70,7 @@ override func viewDidLoad() {
         customPickerView.show(viewController: nil, animated: true)
     }
 ```
-
+--------------
 ### Instead of Delegate, ELPickerView Use Closure to Handle Callback
 
 * There are rich callbacks as follow:
