@@ -65,28 +65,39 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     // MARK: - Handler
     
     /// Function used to transform Item into String. If the Item is String kind, itemConfigHandler is not necessory to be set.
-    public var itemConfigHandler: ((T) -> String)?
+    public var itemConfigHandler: ((T) -> String) = { (item) -> String in
+        if let convertableString = item as? CustomStringConvertible {
+            return convertableString.description
+        }
+        return "Item inconvertable !"
+    }
     /// Triggered when Left Button is tapped.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
-    public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+    public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
+        return (true, true)
+    }
     /// Triggered when Right Button is tapped.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
-    public var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+    public var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
+        return (true, true)
+    }
     /// Triggered when user picked one row in Picker View.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is false
     //  animated: tell the Picker View whether the hide action should have animation   Default value is false
-    public var didScrollHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool))?
+    public var didScrollHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
+        return (false, true)
+    }
     /// Triggered when Picker View will show
     public var willShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did show
@@ -106,6 +117,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// The bottom view containing Title Bar and Picker
     public lazy var foregroundView: ELPickerForegroundView = {
         let picker = ELPickerForegroundView(pickerType: self.pickerType)
+        picker.backgroundColor = UIColor.white
         picker.leftButton.addTarget(self, action: #selector(didTapLeftButton(_:)), for: .touchUpInside)
         picker.rightButton.addTarget(self, action: #selector(didTapRightButton(_:)), for: .touchUpInside)
         picker.picker.delegate = self
@@ -135,6 +147,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// Setup views
     public func setupViews() {
         addSubview(foregroundView)
+        backgroundColor = UIColor.init(white: 0/255, alpha: 0.4)
         addGestureRecognizer(tapBackground)
         clipsToBounds = true
     }
@@ -155,21 +168,12 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     }
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if let handler = itemConfigHandler {
-            return handler(items[row])
-        }
-        if let string = items[row] as? String {
-            return string
-        }
-        return ""
+        return itemConfigHandler(items[row])
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         weak var weakSelf = self
-        var interact: (shouldHide: Bool, animated: Bool) = (true, true)
-        if let handler = didScrollHandler {
-            interact = handler(weakSelf, row, items[row])
-        }
+        let interact = didScrollHandler(weakSelf, row, items[row])
         if interact.shouldHide {
             hide(animated: interact.animated)
         }
@@ -190,11 +194,8 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// - Parameter button: button
     public func didTapLeftButton(_ button: UIButton) {
         weak var weakSelf = self
-        var interact: (shouldHide: Bool, animated: Bool) = (true, true)
-        if let handler = leftButtoTapHandler {
-            let index = foregroundView.picker.selectedRow(inComponent: 0)
-            interact = handler(weakSelf, index, items[index])
-        }
+        let index = foregroundView.picker.selectedRow(inComponent: 0)
+        let interact = leftButtoTapHandler(weakSelf, index, items[index])
         if interact.shouldHide {
             hide(animated: interact.animated)
         }
@@ -205,11 +206,8 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// - Parameter button: button
     public func didTapRightButton(_ button: UIButton) {
         weak var weakSelf = self
-        var interact: (shouldHide: Bool, animated: Bool) = (true, true)
-        if let handler = rightButtoTapHandler {
-            let index = foregroundView.picker.selectedRow(inComponent: 0)
-            interact = handler(weakSelf, index, items[index])
-        }
+        let index = foregroundView.picker.selectedRow(inComponent: 0)
+        let interact = rightButtoTapHandler(weakSelf, index, items[index])
         if interact.shouldHide {
             hide(animated: interact.animated)
         }
