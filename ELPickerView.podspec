@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "https://github.com/Elenionl"
   s.platform     = :ios, '8.0'
   s.source       = { :git => "https://github.com/Elenionl/ELPickerView-Swift.git", :tag => "#{s.version}" }
-  s.source_files  = "ELPickerView/ELPickerView/*.swift"
+  s.source_files  = "Pod/*"
   s.requires_arc = true
   s.frameworks = 'UIKit'
 end
