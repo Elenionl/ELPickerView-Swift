@@ -4,8 +4,8 @@ ELPickerView: 简单易用的 Picker View, 使用 Swift 3 开发
 [![Build Status](https://travis-ci.org/Elenionl/ELPickerView-Swift.svg?branch=master)](https://travis-ci.org/Elenionl/ELPickerView-Swift)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
 [![CocoaPods](https://img.shields.io/cocoapods/l/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
-[![Platform](https://img.shields.io/cocoapods/p/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
-
+[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-blue.svg)](https://img.shields.io/badge/Swift-3.0-blue.svg)
+[![iOS 8.0](https://img.shields.io/badge/iOS-8.0-blue.svg)](https://img.shields.io/badge/iOS-8.0-blue.svg)
 **:warning: ELPickerView 适用于 Swift 3.**
 
 ## Screenshots
