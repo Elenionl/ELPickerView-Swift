@@ -49,13 +49,6 @@
                                     <action selector="showWithoutTitleBar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dT6-oS-RKm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiG-ZC-OTL">
-                                <rect key="frame" x="120" y="438" width="80" height="30"/>
-                                <state key="normal" title="No Dividers"/>
-                                <connections>
-                                    <action selector="showWithNoDivider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3OF-FM-7yr"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-FI-2gq">
                                 <rect key="frame" x="10" y="116.5" width="300" height="17"/>
                                 <constraints>
@@ -71,6 +64,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiG-ZC-OTL">
+                                <rect key="frame" x="24" y="429" width="273" height="30"/>
+                                <state key="normal" title="No Dividers &amp; Tap Background Disabled"/>
+                                <connections>
+                                    <action selector="showWithNoDivider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3OF-FM-7yr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -78,8 +78,8 @@
                             <constraint firstItem="dx8-zH-tVb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="INs-RH-sh8"/>
                             <constraint firstItem="VGc-1L-ym5" firstAttribute="centerX" secondItem="7aT-bk-lch" secondAttribute="centerX" id="Sth-ai-qhe"/>
                             <constraint firstItem="dSt-DA-bKo" firstAttribute="top" secondItem="f9N-ou-VBQ" secondAttribute="bottom" constant="19" id="U4d-jx-STB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XiG-ZC-OTL" secondAttribute="bottom" constant="100" id="V0r-pg-wua"/>
-                            <constraint firstItem="XiG-ZC-OTL" firstAttribute="top" secondItem="dSt-DA-bKo" secondAttribute="bottom" constant="25" id="V3H-W1-pB5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XiG-ZC-OTL" secondAttribute="bottom" constant="109" id="V0r-pg-wua"/>
+                            <constraint firstItem="XiG-ZC-OTL" firstAttribute="top" secondItem="dSt-DA-bKo" secondAttribute="bottom" constant="16" id="V3H-W1-pB5"/>
                             <constraint firstItem="bsc-FI-2gq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VyX-dh-uds"/>
                             <constraint firstItem="f9N-ou-VBQ" firstAttribute="centerX" secondItem="dSt-DA-bKo" secondAttribute="centerX" id="cws-hy-Pft"/>
                             <constraint firstItem="bsc-FI-2gq" firstAttribute="centerX" secondItem="7aT-bk-lch" secondAttribute="centerX" id="f1c-Sq-tao"/>
