@@ -74,6 +74,17 @@ override func viewDidLoad() {
 ### Instead of Delegate, ELPickerView Use Closure to Handle Callback
 
 * There are rich callbacks as follow:
+Using seres of 'Set' methods
+```Swift
+        view.setDidScrollHandler({ [weak self] (view, chosenIndex, chosenItem) -> (shouldHide: Bool, animated: Bool) in
+            let hide = false
+            let animated = false
+            self?.logLabel.text = "Did Scroll. \n<Index: \(chosenIndex)> \n<chosenItem: \(chosenItem)> \n<Hide: \(hide)> \n<Animated: \(animated)>"
+            print(self?.logLabel.text ?? "")
+            return (hide, animated)
+        })
+```
+set value
 ```Swift
         customPickerView.leftButtoTapHandler = { [weak self] (view: ELCustomPickerView<String>?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
             let hide = true
