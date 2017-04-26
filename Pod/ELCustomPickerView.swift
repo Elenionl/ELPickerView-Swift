@@ -19,7 +19,7 @@ private let screenHeight = UIScreen.main.bounds.size.height
 
 // MARK: - ELCustomPickerView
 /// The Custom Picker View With Animation
-open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
+open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Settings
     
@@ -46,7 +46,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// Set Taping Background to hide Picker View enabled or not  Default value is true
     public var isTapBackgroundEnabled = true {
         didSet {
-            tapBackground.isEnabled = isTapBackgroundEnabled
+            isEnabled = isTapBackgroundEnabled
         }
     }
     /// Left Button of the Title Bar, shortcut to foregroundView.leftButton
@@ -106,11 +106,6 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     public var willHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did hide
     public var didHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
-    public lazy var tapBackground: UITapGestureRecognizer = {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapBackground(_:)))
-        gesture.numberOfTapsRequired = 1
-        return gesture
-    }()
     
     // MARK: - Views
     
@@ -148,8 +143,8 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     public func setupViews() {
         addSubview(foregroundView)
         backgroundColor = UIColor.init(white: 0/255, alpha: 0.4)
-        addGestureRecognizer(tapBackground)
         clipsToBounds = true
+        addTarget(self, action: #selector(didTapBackground(_:)), for: .touchUpInside)
     }
     
     /// Setup frame

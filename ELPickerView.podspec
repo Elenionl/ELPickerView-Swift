@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ELPickerView"
-  s.version      = "0.1.3"
+  s.version      = "0.1.4"
   s.summary      = "Easily Used Picker View build with Swift 3"
   s.description  = <<-DESC
   ELPickerView is an easily used Picker View suit. To use ELPickerView, only three steps (- add -show -hide) is need.
