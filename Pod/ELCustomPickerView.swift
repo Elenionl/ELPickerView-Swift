@@ -19,12 +19,20 @@ private let screenHeight = UIScreen.main.bounds.size.height
 
 // MARK: - ELCustomPickerView
 /// The Custom Picker View With Animation
-open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPickerViewDataSource {
+open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Settings
     
     /// Type of Picker View
     public let pickerType: ELCustomPickerViewType
+    
+    lazy var backView: UIControl = {
+        let view = UIControl(frame: .null)
+        view.backgroundColor = UIColor.init(white: 0/255, alpha: 0.4)
+        view.addTarget(self, action: #selector(didTapBackground(_:)), for: .touchUpInside)
+        return view
+    }()
+    
     /// Items used to config Picker View rows  Default value is []
     public var items: [T] {
         didSet {
@@ -34,7 +42,7 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     /// Background of the screen  Default value is true
     public var blackBackground: Bool = true {
         didSet {
-            backgroundColor = blackBackground ? UIColor.init(white: 0/255, alpha: 0.4) : UIColor.clear
+            backView.backgroundColor = blackBackground ? UIColor.init(white: 0/255, alpha: 0.4) : UIColor.clear
         }
     }
     /// Set Title Bar hidden or not  Default value is false
@@ -46,7 +54,7 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     /// Set Taping Background to hide Picker View enabled or not  Default value is true
     public var isTapBackgroundEnabled = true {
         didSet {
-            isEnabled = isTapBackgroundEnabled
+            backView.isEnabled = isTapBackgroundEnabled
         }
     }
     /// Left Button of the Title Bar, shortcut to foregroundView.leftButton
@@ -65,6 +73,9 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     // MARK: - Handler
     
     /// Function used to transform Item into String. If the Item is String kind, itemConfigHandler is not necessory to be set.
+    public func setItemConfigHandler(_ handler: @escaping (T) -> String) {
+        itemConfigHandler = handler
+    }
     public var itemConfigHandler: ((T) -> String) = { (item) -> String in
         if let convertableString = item as? CustomStringConvertible {
             return convertableString.description
@@ -77,6 +88,9 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
+    public func setLeftButtoTapHandler(_ handler:@escaping (_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) {
+        leftButtoTapHandler = handler
+    }
     public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
         return (true, true)
     }
@@ -86,6 +100,9 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
+    public func setRightButtoTapHandler(_ handler:@escaping (_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) {
+        rightButtoTapHandler = handler
+    }
     public var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
         return (true, true)
     }
@@ -95,16 +112,31 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is false
     //  animated: tell the Picker View whether the hide action should have animation   Default value is false
+    public func setDidScrollHandler(_ handler:@escaping (_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) {
+        didScrollHandler = handler
+    }
     public var didScrollHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
         return (false, true)
     }
     /// Triggered when Picker View will show
+    public func setWillShowHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+        willShowHandler = handler
+    }
     public var willShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did show
+    public func setDidShowHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+        didShowHandler = handler
+    }
     public var didShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View will hide
+    public func setWillHideHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+        willHideHandler = handler
+    }
     public var willHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
     /// Triggered when Picker View did hide
+    public func setDidHideHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+        didHideHandler = handler
+    }
     public var didHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
     
     // MARK: - Views
@@ -141,10 +173,10 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
     
     /// Setup views
     public func setupViews() {
+        addSubview(backView)
         addSubview(foregroundView)
-        backgroundColor = UIColor.init(white: 0/255, alpha: 0.4)
+        backgroundColor = UIColor.clear
         clipsToBounds = true
-        addTarget(self, action: #selector(didTapBackground(_:)), for: .touchUpInside)
     }
     
     /// Setup frame
@@ -217,15 +249,15 @@ open class ELCustomPickerView<T: Any>: UIControl, UIPickerViewDelegate, UIPicker
         weak var weakSelf = self
         if let ctrl = viewController  {
             frame = CGRect(x: 0, y: 0, width: screenWidth, height: ctrl.view.frame.height)
-            foregroundView.frame = CGRect(x: 0, y: frame.height, width: screenWidth, height: 260)
             ctrl.view.addSubview(self)
         }
         else {
             let window = UIApplication.shared.windows[0]
             frame = window.frame
-            foregroundView.frame = CGRect(x: 0, y: frame.height, width: screenWidth, height: 260)
             window.addSubview(self)
         }
+        foregroundView.frame = CGRect(x: 0, y: frame.height, width: screenWidth, height: 260)
+        backView.frame = frame
         if let handler = willShowHandler {
             handler(weakSelf)
         }

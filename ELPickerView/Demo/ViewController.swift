@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 
     @IBAction func showByWindow(_ sender: UIButton) {
         customPickerView.title.text = "Show by Window"
+        customPickerView.isTapBackgroundEnabled = true
         customPickerView.blackBackground = true
         customPickerView.isTitleBarHidden = false
         customPickerView.foregroundView.bottomDivider.isHidden = false
@@ -28,6 +29,7 @@ class ViewController: UIViewController {
     }
     @IBAction func showByViewController(_ sender: UIButton) {
         customPickerView.title.text = "Show by ViewController"
+        customPickerView.isTapBackgroundEnabled = true
         customPickerView.blackBackground = true
         customPickerView.isTitleBarHidden = false
         customPickerView.foregroundView.bottomDivider.isHidden = false
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
     }
     @IBAction func showWithWhiteBackground(_ sender: UIButton) {
         customPickerView.title.text = "Show With White Background"
+        customPickerView.isTapBackgroundEnabled = true
         customPickerView.blackBackground = false
         customPickerView.isTitleBarHidden = false
         customPickerView.foregroundView.bottomDivider.isHidden = false
@@ -44,6 +47,7 @@ class ViewController: UIViewController {
     }
     @IBAction func showWithoutTitleBar(_ sender: UIButton) {
         customPickerView.title.text = "Show With White Background"
+        customPickerView.isTapBackgroundEnabled = true
         customPickerView.blackBackground = true
         customPickerView.isTitleBarHidden = true
         customPickerView.foregroundView.bottomDivider.isHidden = false
@@ -51,7 +55,8 @@ class ViewController: UIViewController {
         customPickerView.show(viewController: self, animated: true)
     }
     @IBAction func showWithNoDivider(_ sender: UIButton) {
-        customPickerView.title.text = "Show With No Divider"
+        customPickerView.title.text = "Show With No Divider & Tap Background Disabled"
+        customPickerView.isTapBackgroundEnabled = false
         customPickerView.blackBackground = true
         customPickerView.isTitleBarHidden = false
         customPickerView.foregroundView.bottomDivider.isHidden = true
@@ -85,46 +90,46 @@ class ViewController: UIViewController {
         view.foregroundView.picker.backgroundColor = UIColor.white
         view.foregroundView.bottomDivider.isHidden = true
         // MARK: - Handler
-        view.itemConfigHandler = { (key: String, content: String) in
-            return content
-        }
-        view.leftButtoTapHandler = { [weak self] (view: CustomView?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
+        view.setItemConfigHandler({ (item) -> String in
+            return item.content
+        })
+        view.setLeftButtoTapHandler({ [weak self] (view, chosenIndex, chosenItem) -> (shouldHide: Bool, animated: Bool) in
             let hide = true
             let animated = true
             self?.logLabel.text = "Did Tap Left Button.\n <Index: \(chosenIndex)> \n<chosenItem: \(chosenItem)> \n<Hide: \(hide)> \n<Animated: \(animated)>"
             print(self?.logLabel.text ?? "")
             return (hide, animated)
-        }
-        view.rightButtoTapHandler = { [weak self] (view: CustomView?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
+        })
+        view.setRightButtoTapHandler({ [weak self] (view, chosenIndex, chosenItem) -> (shouldHide: Bool, animated: Bool) in
             let hide = true
             let animated = true
             self?.logLabel.text = "Did Tap Right Button. \n<Index: \(chosenIndex)> \n<chosenItem: \(chosenItem)> \n<Hide: \(hide)> \n<Animated: \(animated)>"
             print(self?.logLabel.text ?? "")
             return (hide, animated)
-        }
-        view.didScrollHandler = { [weak self] (view: CustomView?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
+        })
+        view.setDidScrollHandler({ [weak self] (view, chosenIndex, chosenItem) -> (shouldHide: Bool, animated: Bool) in
             let hide = false
             let animated = false
             self?.logLabel.text = "Did Scroll. \n<Index: \(chosenIndex)> \n<chosenItem: \(chosenItem)> \n<Hide: \(hide)> \n<Animated: \(animated)>"
             print(self?.logLabel.text ?? "")
             return (hide, animated)
-        }
-        view.willShowHandler = { [weak self] (view: CustomView?) in
+        })
+        view.setWillShowHandler({ [weak self] (view) in
             self?.showStatus.text = "View Will Show"
             print(self?.showStatus.text ?? "")
-        }
-        view.didShowHandler = { [weak self] (view: CustomView?) in
+        })
+        view.setDidShowHandler({ [weak self] (view) in
             self?.showStatus.text = "View Did Show"
             print(self?.showStatus.text ?? "")
-        }
-        view.willHideHandler = { [weak self] (view: CustomView?) in
+        })
+        view.setWillHideHandler({ [weak self] (view) in
             self?.showStatus.text = "View Will Hide"
             print(self?.showStatus.text ?? "")
-        }
-        view.didHideHandler = { [weak self] (view: CustomView?) in
+        })
+        view.setDidHideHandler({ [weak self] (view) in
             self?.showStatus.text = "View Did Hide"
             print(self?.showStatus.text ?? "")
-        }
+        })
         return view
     }()
 }

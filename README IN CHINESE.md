@@ -69,6 +69,17 @@ override func viewDidLoad() {
 ### ELPickerView 中没有代理, 使用闭包来处理回调, 代码聚合性更好
 
 * 针对各种事件都有回调
+利用 Set 方法完成
+```Swift
+        view.setDidScrollHandler({ [weak self] (view, chosenIndex, chosenItem) -> (shouldHide: Bool, animated: Bool) in
+            let hide = false
+            let animated = false
+            self?.logLabel.text = "Did Scroll. \n<Index: \(chosenIndex)> \n<chosenItem: \(chosenItem)> \n<Hide: \(hide)> \n<Animated: \(animated)>"
+            print(self?.logLabel.text ?? "")
+            return (hide, animated)
+        })
+```
+直接设置
 ```Swift
         customPickerView.leftButtoTapHandler = { [weak self] (view: ELCustomPickerView<String>?, chosenIndex: Int, chosenItem: (key: String, content: String)) in
             let hide = true
