@@ -21,7 +21,7 @@ Easily Used Picker View build with Swift 3
 
 ## How to Install
 
-### Using [CocoaPods](http://cocoapods.org)
+### Using [CocoaPods](https://cocoapods.org/pods/ELPickerView)
 
 * Add this line to your ``podfile`` :
 ``pod 'ELPickerView'``
