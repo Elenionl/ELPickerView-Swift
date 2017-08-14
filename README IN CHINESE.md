@@ -22,6 +22,8 @@ ELPickerView: 简单易用的 Picker View, 使用 Swift 3 开发
 * 在 ``podfile`` 中添加下面一行代码 :
 ``pod 'ELPickerView'``
 * 使用 Terminal 运行 `pod install`
+*Swift 3* 使用 3.0.0 pod 版本
+*Swift 4* 使用 4.* pod 版本
 * 完成!
 -----------
 ### 直接添加
