@@ -212,14 +212,14 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// Tap background action
     ///
     /// - Parameter sender: sender
-    public func didTapBackground(_ sender: Any) {
+    @objc public func didTapBackground(_ sender: Any) {
         hide(animated: true)
     }
     
     /// Tap left button action
     ///
     /// - Parameter button: button
-    public func didTapLeftButton(_ button: UIButton) {
+    @objc public func didTapLeftButton(_ button: UIButton) {
         weak var weakSelf = self
         let index = foregroundView.picker.selectedRow(inComponent: 0)
         let interact = leftButtoTapHandler(weakSelf, index, items[index])
@@ -231,7 +231,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// Tap right button action
     ///
     /// - Parameter button: button
-    public func didTapRightButton(_ button: UIButton) {
+    @objc public func didTapRightButton(_ button: UIButton) {
         weak var weakSelf = self
         let index = foregroundView.picker.selectedRow(inComponent: 0)
         let interact = rightButtoTapHandler(weakSelf, index, items[index])
