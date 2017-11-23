@@ -1,19 +1,19 @@
-ELPickerView: Easily Used Picker View build with Swift 3
+ELPickerView: Easily Used Picker View build with Swift 4
 ======================================
 
 [![Build Status](https://travis-ci.org/Elenionl/ELPickerView-Swift.svg?branch=master)](https://travis-ci.org/Elenionl/ELPickerView-Swift)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
 [![CocoaPods](https://img.shields.io/cocoapods/l/ELPickerView.svg?style=flat)](https://cocoapods.org/pods/ELPickerView)
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-blue.svg)](https://img.shields.io/badge/Swift-3.0-blue.svg)
+[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-blue.svg)](https://img.shields.io/badge/Swift-4.0-blue.svg)
 [![iOS 8.0](https://img.shields.io/badge/iOS-8.0-blue.svg)](https://img.shields.io/badge/iOS-8.0-blue.svg)
 
-**:warning: ELPickerView requires Swift Version higher than 3.0.**
+**:warning: ELPickerView requires Swift Version higher than 4.0.**
 
 ## 请点击[中文说明](https://github.com/Elenionl/ELPickerView-Swift/blob/master/README%20IN%20CHINESE.md)
 
 
 ## Screenshots
-Easily Used Picker View build with Swift 3
+Easily Used Picker View build with Swift 4
 
 
 ![screenshots_4](https://raw.githubusercontent.com/Elenionl/ELPickerView-Swift/master/screenshots/screenshots_4.gif)
@@ -26,8 +26,8 @@ Easily Used Picker View build with Swift 3
 * Add this line to your ``podfile`` :
 ``pod 'ELPickerView'``
 * Run `pod install` with Terminal
-*Swift 3* use 3.0.0 pod version
-*Swift 4* use 4.* pod version
+*Swift 3.* use 3.0.0 pod version
+*Swift 4.* use 4.* pod version
 * Then everything is done!
 -----------------------
 ### Simply add
@@ -227,7 +227,7 @@ public lazy var foregroundView: ELPickerForegroundView
 ## Requirements
 
 * Xcode 8.0
-* Swift 3.0
+* Swift 4.0
 * Using ARC
 * iOS 8.0
 --------------
