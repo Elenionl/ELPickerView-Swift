@@ -12,7 +12,9 @@
 		2C4DD9121EAB6D0F0038FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4DD9111EAB6D0F0038FEA9 /* Assets.xcassets */; };
 		2C4DD91E1EAB91380038FEA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4DD91A1EAB91380038FEA9 /* LaunchScreen.storyboard */; };
 		2C4DD91F1EAB91380038FEA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4DD91C1EAB91380038FEA9 /* Main.storyboard */; };
-		2C4DD9A01EACF9B90038FEA9 /* ELCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4DD99F1EACF9B90038FEA9 /* ELCustomPickerView.swift */; };
+		2C4DD9A01EACF9B90038FEA9 /* ELPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4DD99F1EACF9B90038FEA9 /* ELPickerView.swift */; };
+		2C51CB381FFDEB1000F3FA80 /* ELPickerView+SingleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51CB371FFDEB1000F3FA80 /* ELPickerView+SingleComponent.swift */; };
+		2C9E22F71FFCE0BD00F3A107 /* Pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9E22F61FFCE0BD00F3A107 /* Pch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +25,9 @@
 		2C4DD9111EAB6D0F0038FEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C4DD91B1EAB91380038FEA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C4DD91D1EAB91380038FEA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		2C4DD99F1EACF9B90038FEA9 /* ELCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELCustomPickerView.swift; path = Pod/ELCustomPickerView.swift; sourceTree = SOURCE_ROOT; };
+		2C4DD99F1EACF9B90038FEA9 /* ELPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELPickerView.swift; path = Pod/ELPickerView.swift; sourceTree = SOURCE_ROOT; };
+		2C51CB371FFDEB1000F3FA80 /* ELPickerView+SingleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ELPickerView+SingleComponent.swift"; sourceTree = "<group>"; };
+		2C9E22F61FFCE0BD00F3A107 /* Pch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +90,9 @@
 		2C4DD99E1EACF9A50038FEA9 /* ELPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				2C4DD99F1EACF9B90038FEA9 /* ELCustomPickerView.swift */,
+				2C4DD99F1EACF9B90038FEA9 /* ELPickerView.swift */,
+				2C9E22F61FFCE0BD00F3A107 /* Pch.swift */,
+				2C51CB371FFDEB1000F3FA80 /* ELPickerView+SingleComponent.swift */,
 			);
 			name = ELPickerView;
 			sourceTree = "<group>";
@@ -165,7 +171,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4DD9101EAB6D0A0038FEA9 /* AppDelegate.swift in Sources */,
-				2C4DD9A01EACF9B90038FEA9 /* ELCustomPickerView.swift in Sources */,
+				2C4DD9A01EACF9B90038FEA9 /* ELPickerView.swift in Sources */,
+				2C9E22F71FFCE0BD00F3A107 /* Pch.swift in Sources */,
+				2C51CB381FFDEB1000F3FA80 /* ELPickerView+SingleComponent.swift in Sources */,
 				2C4DD90E1EAB6D000038FEA9 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

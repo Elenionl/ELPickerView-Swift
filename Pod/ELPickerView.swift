@@ -12,26 +12,46 @@
 
 import UIKit
 
-/// Width of Screen
-private let screenWidth = UIScreen.main.bounds.size.width
-/// Height of Screen
-private let screenHeight = UIScreen.main.bounds.size.height
-
-// MARK: - ELCustomPickerView
-/// The Custom Picker View With Animation
-open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
+// MARK: - ELPickerView
+/// The Picker View With Animation
+open class ELPickerView<T: ELPikcerDataType>: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Settings
     
     /// Type of Picker View
-    public let pickerType: ELCustomPickerViewType
+    public let pickerType: ELPickerViewType
     
-    lazy var backView: UIControl = {
-        let view = UIControl(frame: .null)
-        view.backgroundColor = UIColor.init(white: 0/255, alpha: 0.4)
-        view.addTarget(self, action: #selector(didTapBackground(_:)), for: .touchUpInside)
-        return view
-    }()
+    /// Background of the screen  Default value is true
+    public var blackBackground: Bool = true {
+        didSet {
+            backgroundView.backgroundColor = blackBackground ? UIColor.init(white: 0/255, alpha: 0.4) : UIColor.clear
+        }
+    }
+    
+    var componentWidthFactor: [ = <#value#>
+    
+    
+    /// Set Title Bar hidden or not  Default value is false
+    public var isTitleBarHidden: Bool {
+        set {
+            foregroundView.titleBar.isHidden = newValue
+        }
+        get {
+            return foregroundView.titleBar.isHidden
+        }
+    }
+    
+    /// Set Taping Background to hide Picker View enabled or not  Default value is true
+    public var isTapBackgroundEnabled: Bool {
+        set {
+            backgroundView.isEnabled = newValue
+        }
+        get {
+            return backgroundView.isEnabled
+        }
+    }
+
+    // MARK: - ItemOperation
     
     /// Items used to config Picker View rows  Default value is []
     public var items: [T] {
@@ -39,105 +59,96 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
             foregroundView.picker.reloadAllComponents()
         }
     }
-    /// Background of the screen  Default value is true
-    public var blackBackground: Bool = true {
-        didSet {
-            backView.backgroundColor = blackBackground ? UIColor.init(white: 0/255, alpha: 0.4) : UIColor.clear
-        }
-    }
-    /// Set Title Bar hidden or not  Default value is false
-    public var isTitleBarHidden = false {
-        didSet {
-            foregroundView.titleBar.isHidden = isTitleBarHidden
-        }
-    }
-    /// Set Taping Background to hide Picker View enabled or not  Default value is true
-    public var isTapBackgroundEnabled = true {
-        didSet {
-            backView.isEnabled = isTapBackgroundEnabled
-        }
-    }
-    /// Left Button of the Title Bar, shortcut to foregroundView.leftButton
-    public lazy var leftButton: UIButton = {
-        return self.foregroundView.leftButton
-    }()
-    /// Right Button of the Title Bar, shortcut to foregroundView.rightButton
-    public lazy var rightButton: UIButton = {
-        return self.foregroundView.rightButton
-    }()
-    /// Title of the Title Bar, shortcut to foregroundView.title
-    public lazy var title: UILabel = {
-        return self.foregroundView.title
-    }()
     
     // MARK: - Handler
     
+    public typealias ItemTransformHandler = (_ item: T) -> String
+    
     /// Function used to transform Item into String. If the Item is String kind, itemConfigHandler is not necessory to be set.
-    public func setItemConfigHandler(_ handler: @escaping (T) -> String) {
-        itemConfigHandler = handler
+    public func setItemTransformHandler(_ handler: @escaping ItemTransformHandler) {
+        itemTransformHandler = handler
     }
-    public var itemConfigHandler: ((T) -> String) = { (item) -> String in
+    
+    public private(set) var itemTransformHandler: ItemTransformHandler = { (item) -> String in
         if let convertableString = item as? CustomStringConvertible {
             return convertableString.description
         }
         return "Item inconvertable !"
     }
+    
+    public typealias InteractionHandler = (_ view: ELPickerView<T>?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)
+    
     /// Triggered when Left Button is tapped.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
-    public func setLeftButtoTapHandler(_ handler:@escaping (_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) {
+    public func setLeftButtoTapHandler(_ handler:@escaping InteractionHandler) {
         leftButtoTapHandler = handler
     }
-    public var leftButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
+    
+    public private(set) var leftButtoTapHandler: InteractionHandler = { _, _, _ in
         return (true, true)
     }
+    
     /// Triggered when Right Button is tapped.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is true
     //  animated: tell the Picker View whether the hide action should have animation  Default value is true
-    public func setRightButtoTapHandler(_ handler:@escaping (_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) {
+    public func setRightButtoTapHandler(_ handler:@escaping InteractionHandler) {
         rightButtoTapHandler = handler
     }
-    public var rightButtoTapHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
+    
+    public private(set) var rightButtoTapHandler: InteractionHandler = { _, _, _ in
         return (true, true)
     }
+    
     /// Triggered when user picked one row in Picker View.
     //  view: the CustomPickerView
     //  chosenIndex: the current chosen index of row in Picker View
     //  chosenItem: the Item connected with the chosen row
     //  shouldHide: tell the Picker View whether it should be hide  Default value is false
     //  animated: tell the Picker View whether the hide action should have animation   Default value is false
-    public func setDidScrollHandler(_ handler:@escaping (_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) {
+    public func setDidScrollHandler(_ handler:@escaping InteractionHandler) {
         didScrollHandler = handler
     }
-    public var didScrollHandler: ((_ view: ELCustomPickerView?, _ chosenIndex: Int, _ chosenItem: T) -> (shouldHide: Bool, animated: Bool)) = { _, _, _ in
+    
+    public private(set) var didScrollHandler: InteractionHandler = { _, _, _ in
         return (false, true)
     }
+    
+    public typealias AnimationHandler = (_ view: ELPickerView<T>?) -> Void
+    
     /// Triggered when Picker View will show
-    public func setWillShowHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+    public func setWillShowHandler(_ handler: @escaping AnimationHandler) {
         willShowHandler = handler
     }
-    public var willShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
+    
+    public private(set) var willShowHandler: AnimationHandler?
+    
     /// Triggered when Picker View did show
-    public func setDidShowHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+    public func setDidShowHandler(_ handler: @escaping AnimationHandler) {
         didShowHandler = handler
     }
-    public var didShowHandler: ((_ view: ELCustomPickerView?) -> Void)?
+    
+    public private(set) var didShowHandler: AnimationHandler?
+    
     /// Triggered when Picker View will hide
-    public func setWillHideHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+    public func setWillHideHandler(_ handler: @escaping AnimationHandler) {
         willHideHandler = handler
     }
-    public var willHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
+    
+    public private(set) var willHideHandler: AnimationHandler?
+    
     /// Triggered when Picker View did hide
-    public func setDidHideHandler(_ handler: @escaping (_ view: ELCustomPickerView?) -> Void) {
+    public func setDidHideHandler(_ handler: @escaping AnimationHandler) {
         didHideHandler = handler
     }
-    public var didHideHandler: ((_ view: ELCustomPickerView?) -> Void)?
+    
+    public private(set) var didHideHandler: AnimationHandler?
     
     // MARK: - Views
     
@@ -152,6 +163,30 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
         return picker
     }()
     
+    /// Background view
+    public lazy var backgroundView: UIControl = {
+        let view = UIControl(frame: .null)
+        view.backgroundColor = UIColor.init(white: 0/255, alpha: 0.4)
+        view.addTarget(self, action: #selector(didTapBackground(_:)), for: .touchUpInside)
+        return view
+    }()
+    
+    /// Left Button of the Title Bar, shortcut to foregroundView.leftButton
+    public lazy var leftButton: UIButton = {
+        return self.foregroundView.leftButton
+    }()
+    
+    /// Right Button of the Title Bar, shortcut to foregroundView.rightButton
+    public lazy var rightButton: UIButton = {
+        return self.foregroundView.rightButton
+    }()
+    
+    /// Title of the Title Bar, shortcut to foregroundView.title
+    public lazy var title: UILabel = {
+        return self.foregroundView.title
+    }()
+    
+    
     // MARK: - LifeCircle
     
     /// Init
@@ -159,7 +194,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     /// - Parameters:
     ///   - pickerType: CustomPickerViewType
     ///   - items: items used as datasource of rows in Picker View
-    public init(pickerType: ELCustomPickerViewType, items: [T]) {
+    public init(pickerType: ELPickerViewType, items: [T]) {
         self.pickerType = pickerType
         self.items = items
         super.init(frame: .null)
@@ -173,7 +208,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     
     /// Setup views
     public func setupViews() {
-        addSubview(backView)
+        addSubview(backgroundView)
         addSubview(foregroundView)
         backgroundColor = UIColor.clear
         clipsToBounds = true
@@ -195,7 +230,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     }
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return itemConfigHandler(items[row])
+        return itemTransformHandler(items[row])
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -257,7 +292,7 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
             window.addSubview(self)
         }
         foregroundView.frame = CGRect(x: 0, y: frame.height, width: screenWidth, height: 260)
-        backView.frame = frame
+        backgroundView.frame = frame
         if let handler = willShowHandler {
             handler(weakSelf)
         }
@@ -289,24 +324,13 @@ open class ELCustomPickerView<T: Any>: UIView, UIPickerViewDelegate, UIPickerVie
     }
 }
 
-// MARK: - ELCustomPickerViewType
-
-/// ELCustomPickerViewType. The Picker View can only have one component by now, will add more pickerType in future.
-///
-/// - singleComponent: Picker View with only one component
-public enum ELCustomPickerViewType {
-    case singleComponent
-    //    case date
-    //    case time
-}
-
 // MARK: - ELPickerForegroundView
 
 /// The view holding TitleBar and Picker
 open class ELPickerForegroundView: UIView {
     
     /// CustomPickerViewType
-    public let pickerType: ELCustomPickerViewType
+    public let pickerType: ELPickerViewType
     
     /// Left Button of Title Bar
     lazy var leftButton: UIButton = {
@@ -391,7 +415,7 @@ open class ELPickerForegroundView: UIView {
     /// Init
     ///
     /// - Parameter pickerType: CustomPickerViewType
-    public init(pickerType: ELCustomPickerViewType) {
+    public init(pickerType: ELPickerViewType) {
         self.pickerType = pickerType
         super.init(frame: .null)
         setupViews()

@@ -12,7 +12,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 import UIKit
 
-typealias CustomView = ELCustomPickerView<(key: String, content: String)>
+typealias CustomView = ELCustomPickerView<(String, String)>
 
 class ViewController: UIViewController {
     @IBOutlet weak var logLabel: UILabel!
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     }
     
     lazy var customPickerView: CustomView = {
-        let view = CustomView(pickerType: .singleComponent, items: [
+        let view = CustomView.create(pickerType: .singleComponent, items: [
             ("00", "Row 0")
             , ("02", "Row 1")
             , ("04", "Row 2")
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
         view.foregroundView.bottomDivider.isHidden = true
         // MARK: - Handler
         view.setItemConfigHandler({ (item) -> String in
-            return item.content
+            return item.0
         })
         view.setLeftButtoTapHandler({ [weak self] (view, chosenIndex, chosenItem) -> (shouldHide: Bool, animated: Bool) in
             let hide = true
